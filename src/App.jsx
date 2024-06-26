@@ -32,7 +32,7 @@ function App() {
 
   ///handle add button
   const handleAdd = () => {
-    setTodos([{ id: uuidv4(), todo, isCompleted: false }, ...todos])
+    setTodos([{ id: uuidv4(), todo, isCompleted: false, added: new Date().toLocaleString(),completed:"---"}, ...todos])
     setTodo("")
   }
 
@@ -69,14 +69,15 @@ function App() {
     for (let temp of newTodos) {
       if (temp.id === ide) {
         temp.isCompleted = !temp.isCompleted
+        temp.completed = temp.completed==="---"?new Date().toLocaleString():"---"
       }
     }
+
     setTodos(newTodos)
   }
 
   //set show finished
   const toggleFinished = (e) => {
-    console.log(showFinished)
     setshowFinished(!showFinished);
 
   }
@@ -86,22 +87,23 @@ function App() {
     <>
       <Navbar />
 
-      <div className="container bg-blue-100 rounded-xl p-5 my-8 min-h-[75vh] mx-auto md:w-[88%] w-[98%]">
+      <div className="container bg-blue-100 rounded-xl p-5 pl-8 my-8 min-h-[75vh] mx-auto md:w-[88%] w-[98%]">
 
         <div className="addtodo my-3">
           <h1 className='text-2xl font-bold mb-3'>Add a Todo</h1>
 
           <div className='flex items-center'>
             <textarea onChange={handleChange} onKeyDown={handleKeyDown} value={todo} type="text" 
-            className='w-3/4 type p-1 rounded-md break-words' placeholder='add a task...'/>
+            className='w-3/4 type p-1 rounded-md break-words bg-gray-100' placeholder='add a task...'/>
 
             <button onClick={handleAdd} disabled={todo.length < 1}
               className='bg-blue-800 text-white font-bold p-3 py-2 rounded-md hover:bg-blue-700 ml-4 disabled:bg-blue-400'>Add</button>
           </div>
         </div>
           
-
-        <input onChange={toggleFinished} type="checkbox" checked={showFinished} /> Show finished Todos
+        <div className='text-end' >
+        <input onChange={toggleFinished} type="checkbox" checked={showFinished} /> Show completed Todos
+        </div>
   
         <h1 className='text-2xl font-bold'>Your Todos</h1>
 
@@ -110,15 +112,18 @@ function App() {
 
           {todos.map(item => {
             if((!showFinished && !item.isCompleted) || (showFinished && item.isCompleted))
-              return  <div key={item.id} className="todo mt-2 flex bg-blue-200 w-[90%] p-3 rounded-md">
+              return  <div key={item.id} className="todo mt-3 flex bg-blue-200 w-[95%] p-3 pb-1 rounded-md">
 
                 <div>
                   <input className='mr-2 mt-2' type="checkbox" onChange={handleCheckBox} checked={item.isCompleted} name={item.id} />
                 </div>
 
-
-                <div className='w-[80%] break-words text-lg'>
-                  <div className={item.isCompleted ? "line-through" : ""} >{item.todo}</div>
+                <div className='w-[85%] break-words text-lg '>
+                  <div className='font-serif'>{item.todo}</div>
+                  <div className='text-sm flex gap-[20vw]  mt-2 font-semibold text-gray-500'>
+                    <div>added: {item.added}</div>               
+                    <div>completed : {item.completed}</div>
+                  </div>
                 </div>
 
                 <div className="btns">
