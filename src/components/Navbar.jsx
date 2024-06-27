@@ -5,7 +5,7 @@ const Navbar = () => {
     <div>
       <nav className='bg-blue-800'>
         <div className='text-6xl text-white violet-600 text-center font-semibold cursor-pointer
-         hover:text-gray-200'>Todo-List</div>
+         hover:text-gray-200'>Task-Todo</div>
       </nav>
     </div>
   )
