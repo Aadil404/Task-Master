@@ -100,11 +100,11 @@ function App() {
       <div className="container bg-blue-100 rounded-xl md:p-5 p-1 md:pl-8 my-8 min-h-[75vh] mx-auto md:w-[88%] w-[98%]">
 
         <div className="addtodo my-3">
-          <h1 className='text-2xl font-bold mb-3'>Add a Task</h1>
+          <h1 className='text-2xl font-bold mb-3 ml-2'>Add a Task</h1>
 
           <div className='flex items-center'>
             <textarea onChange={handleChange} onKeyDown={handleKeyDown} value={todo} type="text" 
-            className='w-3/4 type p-1 rounded-md break-words bg-gray-100' placeholder='type here...'/>
+            className='w-3/4 type p-1 ml-2 rounded-md break-words bg-gray-100' placeholder='type here...'/>
 
             <button onClick={handleAdd} disabled={todo.length < 1}
               className='bg-blue-800 text-white font-bold p-3 py-2 rounded-md hover:bg-blue-700 ml-4 disabled:bg-blue-400'>Add</button>
@@ -138,9 +138,9 @@ function App() {
 
                 <div className="btns flex sm:flex-row flex-col">
                   <button onClick={(e) => { handleEdit(e, item.id) }} disabled={todo.length>0} 
-                  className='h-10 bg-blue-800 text-white font-bold p-3 py-2 rounded-md hover:bg-blue-700 md:ml-4 ml-1 mb-1 disabled:bg-blue-400'><FaEdit /></button>
+                  className='sm:h-10 h-8 bg-blue-800 text-white font-bold p-3 py-2 rounded-md hover:bg-blue-700 md:ml-4 ml-1 mb-1 disabled:bg-blue-400'><FaEdit /></button>
                   <button onClick={(e) => { handleDelete(e, item.id) }} 
-                  className='h-10 bg-blue-800 text-white font-bold p-3 py-2 rounded-md hover:bg-blue-700 md:ml-4 ml-1 mb-1'><MdDelete /></button>
+                  className='sm:h-10 h-8 bg-blue-800 text-white font-bold p-3 py-2 rounded-md hover:bg-blue-700 md:ml-4 ml-1 mb-1'><MdDelete /></button>
                 </div>
               </div>
           })}
